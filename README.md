@@ -187,3 +187,5 @@ vsim -c work.riscv_tb -do "run -all; quit -f"
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+<!-- Workshop Version 1.0.0 | Verified by Dheepak -->
