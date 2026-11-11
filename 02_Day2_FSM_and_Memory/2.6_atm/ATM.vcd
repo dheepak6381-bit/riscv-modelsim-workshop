@@ -1,0 +1,681 @@
+$date
+	Tue Nov 03 10:42:50 2026
+$end
+$version
+	ModelSim Version 2020.3
+$end
+$timescale
+	1ps
+$end
+
+$scope module ATM_tb $end
+$var reg 1 ! clk $end
+$var reg 1 " reset $end
+$var reg 1 # card_insert $end
+$var reg 1 $ pin_submit $end
+$var reg 4 % pin_entry [3:0] $end
+$var reg 1 & menu_valid $end
+$var reg 3 ' menu_choice [2:0] $end
+$var reg 1 ( amount_valid $end
+$var reg 8 ) amount [7:0] $end
+$var reg 1 * new_pin_valid $end
+$var reg 4 + new_pin [3:0] $end
+$var reg 1 , cancel $end
+$var wire 1 - pin_prompt $end
+$var wire 1 . menu_display $end
+$var wire 1 / balance_display $end
+$var wire 1 0 dispense_cash $end
+$var wire 1 1 deposit_done $end
+$var wire 1 2 pin_changed $end
+$var wire 1 3 transaction_done $end
+$var wire 1 4 insufficient_funds $end
+$var wire 1 5 invalid_amount $end
+$var wire 1 6 card_eject $end
+$var wire 1 7 cancelled $end
+$var wire 1 8 balance [7] $end
+$var wire 1 9 balance [6] $end
+$var wire 1 : balance [5] $end
+$var wire 1 ; balance [4] $end
+$var wire 1 < balance [3] $end
+$var wire 1 = balance [2] $end
+$var wire 1 > balance [1] $end
+$var wire 1 ? balance [0] $end
+$var wire 1 @ cash_dispensed [7] $end
+$var wire 1 A cash_dispensed [6] $end
+$var wire 1 B cash_dispensed [5] $end
+$var wire 1 C cash_dispensed [4] $end
+$var wire 1 D cash_dispensed [3] $end
+$var wire 1 E cash_dispensed [2] $end
+$var wire 1 F cash_dispensed [1] $end
+$var wire 1 G cash_dispensed [0] $end
+$var wire 1 H pin_attempts_left [1] $end
+$var wire 1 I pin_attempts_left [0] $end
+$var wire 1 J current_state [3] $end
+$var wire 1 K current_state [2] $end
+$var wire 1 L current_state [1] $end
+$var wire 1 M current_state [0] $end
+
+$scope task submit_pin $end
+$var reg 4 N value [3:0] $end
+$upscope $end
+
+$scope task choose $end
+$var reg 3 O choice [2:0] $end
+$upscope $end
+
+$scope task enter_amount $end
+$var reg 8 P value [7:0] $end
+$upscope $end
+
+$scope task change_pin $end
+$var reg 4 Q value [3:0] $end
+$upscope $end
+
+$scope module dut $end
+$var parameter 4 R S_IDLE $end
+$var parameter 4 S S_PIN $end
+$var parameter 4 T S_MENU $end
+$var parameter 4 U S_BALANCE $end
+$var parameter 4 V S_WITHDRAW $end
+$var parameter 4 W S_DEPOSIT $end
+$var parameter 4 X S_PIN_CHANGE $end
+$var parameter 4 Y S_DONE $end
+$var parameter 4 Z S_CANCEL $end
+$var parameter 4 [ S_EJECT $end
+$var parameter 4 \ S_LOCKED $end
+$var parameter 3 ] MENU_BALANCE $end
+$var parameter 3 ^ MENU_WITHDRAW $end
+$var parameter 3 _ MENU_DEPOSIT $end
+$var parameter 3 ` MENU_PIN $end
+$var parameter 3 a MENU_CANCEL $end
+$var wire 1 b clk $end
+$var wire 1 c reset $end
+$var wire 1 d card_insert $end
+$var wire 1 e pin_submit $end
+$var wire 1 f pin_entry [3] $end
+$var wire 1 g pin_entry [2] $end
+$var wire 1 h pin_entry [1] $end
+$var wire 1 i pin_entry [0] $end
+$var wire 1 j menu_valid $end
+$var wire 1 k menu_choice [2] $end
+$var wire 1 l menu_choice [1] $end
+$var wire 1 m menu_choice [0] $end
+$var wire 1 n amount_valid $end
+$var wire 1 o amount [7] $end
+$var wire 1 p amount [6] $end
+$var wire 1 q amount [5] $end
+$var wire 1 r amount [4] $end
+$var wire 1 s amount [3] $end
+$var wire 1 t amount [2] $end
+$var wire 1 u amount [1] $end
+$var wire 1 v amount [0] $end
+$var wire 1 w new_pin_valid $end
+$var wire 1 x new_pin [3] $end
+$var wire 1 y new_pin [2] $end
+$var wire 1 z new_pin [1] $end
+$var wire 1 { new_pin [0] $end
+$var wire 1 | cancel $end
+$var reg 1 } pin_prompt $end
+$var reg 1 ~ menu_display $end
+$var reg 1 !! balance_display $end
+$var reg 1 "! dispense_cash $end
+$var reg 1 #! deposit_done $end
+$var reg 1 $! pin_changed $end
+$var reg 1 %! transaction_done $end
+$var reg 1 &! insufficient_funds $end
+$var reg 1 '! invalid_amount $end
+$var reg 1 (! card_eject $end
+$var reg 1 )! cancelled $end
+$var reg 8 *! balance [7:0] $end
+$var reg 8 +! cash_dispensed [7:0] $end
+$var reg 2 ,! pin_attempts_left [1:0] $end
+$var reg 4 -! current_state [3:0] $end
+$var reg 4 .! state [3:0] $end
+$var reg 4 /! stored_pin [3:0] $end
+$var reg 8 0! pending_amount [7:0] $end
+$var reg 2 1! attempts [1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+1"
+0#
+0$
+b0 %
+0&
+b0 '
+0(
+b0 )
+0*
+b0 +
+0,
+0}
+0~
+0!!
+x"!
+x#!
+x$!
+x%!
+x&!
+x'!
+0(!
+x)!
+b1100100 *!
+b0 +!
+b11 ,!
+b0 -!
+b0 .!
+b101 /!
+b0 0!
+b11 1!
+bx N
+bx O
+bx P
+bx Q
+b0 R
+b1 S
+b10 T
+b11 U
+b100 V
+b101 W
+b110 X
+b111 Y
+b1000 Z
+b1001 [
+b1010 \
+b1 ]
+b10 ^
+b11 _
+b100 `
+b101 a
+0-
+0.
+0/
+x0
+x1
+x2
+x3
+x4
+x5
+06
+x7
+0?
+0>
+1=
+0<
+0;
+1:
+19
+08
+0G
+0F
+0E
+0D
+0C
+0B
+0A
+0@
+1I
+1H
+0M
+0L
+0K
+0J
+0|
+0{
+0z
+0y
+0x
+0w
+0v
+0u
+0t
+0s
+0r
+0q
+0p
+0o
+0n
+0m
+0l
+0k
+0j
+0i
+0h
+0g
+0f
+0e
+0d
+1c
+0b
+$end
+#5000
+1!
+1b
+#10000
+0!
+0b
+#15000
+1!
+1b
+#20000
+0!
+0b
+0"
+0c
+#25000
+1!
+1b
+0"!
+0#!
+0$!
+0%!
+0&!
+0'!
+0)!
+00
+01
+02
+03
+04
+05
+07
+#30000
+0!
+0b
+1#
+1d
+#35000
+1!
+1b
+b1 .!
+1}
+b1 -!
+1-
+1M
+#40000
+0!
+0b
+0#
+b101 N
+0d
+#45000
+1!
+1b
+#50000
+0!
+0b
+b101 %
+1$
+1i
+1g
+1e
+#55000
+1!
+1b
+b10 .!
+0}
+1~
+b10 -!
+0-
+1.
+0M
+1L
+#60000
+0!
+0b
+0$
+b1 O
+0e
+#65000
+1!
+1b
+#70000
+0!
+0b
+b1 '
+1&
+1m
+1j
+#75000
+1!
+1b
+b11 .!
+0~
+1!!
+b11 -!
+0.
+1/
+1M
+#80000
+0!
+0b
+0&
+0j
+#85000
+1!
+1b
+b111 .!
+0!!
+b111 -!
+0/
+1K
+#90000
+0!
+0b
+#95000
+1!
+1b
+1%!
+b10 .!
+13
+1~
+b10 -!
+1.
+0M
+0K
+#100000
+0!
+0b
+b10 O
+#105000
+1!
+1b
+0%!
+03
+#110000
+0!
+0b
+b10 '
+1&
+0m
+1l
+1j
+#115000
+1!
+1b
+b100 .!
+0~
+b100 -!
+0.
+0L
+1K
+#120000
+0!
+0b
+0&
+b11110 P
+0j
+#125000
+1!
+1b
+#130000
+0!
+0b
+b11110 )
+1(
+1u
+1t
+1s
+1r
+1n
+#135000
+1!
+1b
+b11110 0!
+b1000110 *!
+b11110 +!
+1"!
+b111 .!
+1F
+1E
+1D
+1C
+1>
+0:
+10
+b111 -!
+1M
+1L
+#140000
+0!
+0b
+0(
+0n
+#145000
+1!
+1b
+0"!
+1%!
+b10 .!
+00
+13
+1~
+b10 -!
+1.
+0M
+0K
+#150000
+0!
+0b
+#155000
+1!
+1b
+0%!
+03
+#160000
+0!
+0b
+b11 O
+#165000
+1!
+1b
+#170000
+0!
+0b
+b11 '
+1&
+1m
+1j
+#175000
+1!
+1b
+b101 .!
+0~
+b101 -!
+0.
+1M
+0L
+1K
+#180000
+0!
+0b
+0&
+b10100 P
+0j
+#185000
+1!
+1b
+#190000
+0!
+0b
+b10100 )
+1(
+0u
+0s
+1n
+#195000
+1!
+1b
+b1011010 *!
+1#!
+b111 .!
+0=
+1<
+1;
+11
+b111 -!
+1L
+#200000
+0!
+0b
+0(
+0n
+#205000
+1!
+1b
+0#!
+1%!
+b10 .!
+01
+13
+1~
+b10 -!
+1.
+0M
+0K
+#210000
+0!
+0b
+#215000
+1!
+1b
+0%!
+03
+#220000
+0!
+0b
+b100 O
+#225000
+1!
+1b
+#230000
+0!
+0b
+b100 '
+1&
+0m
+0l
+1k
+1j
+#235000
+1!
+1b
+b110 .!
+0~
+b110 -!
+0.
+1K
+#240000
+0!
+0b
+0&
+b1001 Q
+0j
+#245000
+1!
+1b
+#250000
+0!
+0b
+b1001 +
+1*
+1{
+1x
+1w
+#255000
+1!
+1b
+b1001 /!
+1$!
+b111 .!
+12
+b111 -!
+1M
+#260000
+0!
+0b
+0*
+0w
+#265000
+1!
+1b
+0$!
+1%!
+b10 .!
+02
+13
+1~
+b10 -!
+1.
+0M
+0K
+#270000
+0!
+0b
+#275000
+1!
+1b
+0%!
+03
+#280000
+0!
+0b
+b101 O
+#285000
+1!
+1b
+#290000
+0!
+0b
+b101 '
+1&
+1m
+1j
+#295000
+1!
+1b
+b1000 .!
+0~
+b1000 -!
+0.
+0L
+1J
+#300000
+0!
+0b
+0&
+0j
+#305000
+1!
+1b
+1)!
+b10 .!
+17
+1~
+b10 -!
+1.
+1L
+0J
+#310000
+0!
+0b
+#315000
+1!
+1b
+0)!
+07
+#320000
+0!
+0b
+#325000
+1!
+1b
+#330000
+0!
+0b
+#335000
+1!
+1b
